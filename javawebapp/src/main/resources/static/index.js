@@ -35,8 +35,18 @@ btn.onclick = () => {
         return;
     }
     input.value = ''
-    const node = buildNode(question, 'yes');
-    deck.insertBefore(node, deck.firstChild);
+    fetch('answer')
+        .then(resp => {
+            if(!resp.ok) {
+                console.error('Failed to fetch data');
+                return;
+            }
+            return resp.text();
+        })
+        .then(answer => {
+            const node = buildNode(question, answer);
+            deck.insertBefore(node, deck.firstChild);
+        });
 }
 
 console.log('Ho gaya');
