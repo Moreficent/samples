@@ -1,14 +1,24 @@
 plugins {
-    id 'java'
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
 }
 
-group 'com.moreficent'
-version '0.1-SNAPSHOT'
+group = 'com.moreficent'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
 }
